@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Reviews</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+    }
+
+    .logo {
+      display: inline-block;
+      margin-right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: inline-block;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ccc;
+    }
+
+    #dark-mode-toggle {
+      margin-left: 20px;
+    }
+
+    #hero {
+      background-image: url('https://via.placeholder.com/1500x600');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      text-align: center;
+      padding: 100px 0;
+      margin-bottom: 40px;
+    }
+
+    #hero h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    #hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #555;
+    }
+
+    .movie-review {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .movie-review h2 {
+      margin-top: 0;
+    }
+
+    .movie-review p {
+      margin: 5px 0;
+    }
+
+    .upcoming-movies {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .upcoming-movie {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .upcoming-movie h2 {
+      margin-top: 0;
+    }
+
+    .upcoming-movie p {
+      margin: 5px 0;
+    }
+
+    .about-section {
+      margin-bottom: 40px;
+    }
+
+    .about-section h2 {
+      margin-top: 0;
+    }
+
+    .about-section p {
+      margin-bottom: 20px;
+    }
+
+    .contact-section {
+      margin-bottom: 40px;
+    }
+
+    .contact-section h2 {
+      margin-top: 0;
+    }
+
+    .contact-form {
+      margin-top: 20px;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    footer ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    footer ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    footer ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .newsletter-form {
+      margin-top: 20px;
+    }
+
+    .newsletter-form input[type="email"] {
+      width: 200px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .legal-links {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">Movie Reviews</div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">Upcoming Movies</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div id="dark-mode-toggle">
+        <input type="checkbox" id="dark-mode-checkbox">
+        <label for="dark-mode-checkbox">Dark Mode</label>
+      </div>
+    </div>
+  </header>
+
+  <div id="hero">
+    <div class="container">
+      <h1>Welcome to Movie Reviews</h1>
+      <p>Discover the latest movie reviews, watch trailers, and find your favorite movies.</p>
+      <input type="text" class="search-bar" id="search-bar" placeholder="Search movie reviews...">
+      <button class="button" onclick="searchMovies()">Search</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <section id="reviews">
+      <div class="movie-review">
+        <h2>The Dark Knight</h2>
+        <p><strong>Plot Summary:</strong> Batman, along with his allies and adversaries, finds himself in a dangerous game of cat and mouse as a new threat emerges in Gotham City.</p>
+        <p><strong>Cast:</strong> Christian Bale, Heath Ledger, Aaron Eckhart</p>
+        <p><strong>Crew:</strong> Christopher Nolan (Director), Jonathan Nolan (Writer)</p>
+        <p><strong>Ratings:</strong> IMDb - 9.0/10, Rotten Tomatoes - 94%</p>
+        <div class="user-rating">
+          <label for="user-rating">Your Rating:</label>
+          <select id="user-rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <button onclick="submitRating()">Submit</button>
+        </div>
+        <div class="user-comment">
+          <label for="user-comment">Your Comment:</label>
+          <textarea id="user-comment" rows="4"></textarea>
+          <button onclick="submitComment()">Submit</button>
+        </div>
+        <div class="social-sharing">
+          <button onclick="shareOnFacebook('The Dark Knight')">Share on Facebook</button>
+          <button onclick="shareOnTwitter('The Dark Knight')">Share on Twitter</button>
+        </div>
+      </div>
+
+      <div class="movie-review">
+        <h2>Inception</h2>
+        <p><strong>Plot Summary:</strong> A thief who enters the dreams of others to steal their secrets gets a chance to plant an idea into the mind of a CEO in exchange for his freedom.</p>
+        <p><strong>Cast:</strong> Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page</p>
+        <p><strong>Crew:</strong> Christopher Nolan (Director, Writer)</p>
+        <p><strong>Ratings:</strong> IMDb - 8.8/10, Rotten Tomatoes - 87%</p>
+        <div class="user-rating">
+          <label for="user-rating">Your Rating:</label>
+          <select id="user-rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <button onclick="submitRating()">Submit</button>
+        </div>
+        <div class="user-comment">
+          <label for="user-comment">Your Comment:</label>
+          <textarea id="user-comment" rows="4"></textarea>
+          <button onclick="submitComment()">Submit</button>
+        </div>
+        <div class="social-sharing">
+          <button onclick="shareOnFacebook('Inception')">Share on Facebook</button>
+          <button onclick="shareOnTwitter('Inception')">Share on Twitter</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="upcoming-movies">
+      <h2>Upcoming Movies</h2>
+      <div class="upcoming-movies">
+        <div class="upcoming-movie">
+          <h2>Avengers: Endgame</h2>
+          <p><strong>Genre:</strong> Action, Adventure</p>
+          <p><strong>Release Date:</strong> April 26, 2019</p>
+          <p><strong>Director:</strong> Anthony Russo, Joe Russo</p>
+        </div>
+        <div class="upcoming-movie">
+          <h2>Star Wars: The Rise of Skywalker</h2>
+          <p><strong>Genre:</strong> Action, Adventure, Fantasy</p>
+          <p><strong>Release Date:</strong> December 20, 2019</p>
+          <p><strong>Director:</strong> J.J. Abrams</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <h2>About Us</h2>
+      <p>Welcome to Movie Reviews! Our mission is to provide you with the latest information and reviews on movies from various genres. Our team of passionate movie enthusiasts works hard to bring you insightful reviews, detailed information about upcoming releases, and an easy-to-use platform for discovering your next favorite movie.</p>
+    </section>
+
+    <section class="contact-section">
+      <h2>Contact Us</h2>
+      <div class="contact-form">
+        <form action="#" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+          <button type="submit" class="button">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="movie-news">
+      <h2>Movie News</h2>
+      <div class="news-article">
+        <h3>New Trailer Released for "The Batman"</h3>
+        <p>Check out the latest trailer for the upcoming film "The Batman," featuring Robert Pattinson as the Dark Knight.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+      <div class="news-article">
+        <h3>Exclusive Interview with Director Christopher Nolan</h3>
+        <p>We sit down with acclaimed director Christopher Nolan to discuss his latest film "Tenet" and his approach to filmmaking.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <ul class="social-links">
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+      <div class="newsletter-form">
+        <form action="#" method="POST">
+          <label for="email">Subscribe to our Newsletter:</label>
+          <input type="email" id="email" name="email" required>
+          <button type="submit" class="button">Subscribe</button>
+        </form>
+      </div>
+      <div class="legal-links">
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const darkModeToggle = document.getElementById('dark-mode-checkbox');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('change', () => {
+      body.classList.toggle('dark-mode');
+    });
+
+    function searchMovies() {
+      const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+      const movieReviews = document.querySelectorAll('.movie-review');
+
+      movieReviews.forEach(review => {
+        const reviewText = review.textContent.toLowerCase();
+        if (reviewText.includes(searchTerm)) {
+          review.style.display = 'block';
+        } else {
+          review.style.display = 'none';
+        }
+      });
+    }
+
+    function submitRating() {
+      const rating = document.getElementById('user-rating').value;
+      // Perform action to submit user rating (e.g., send rating to server)
+      console.log('User rating:', rating);
+    }
+
+    function submitComment() {
+      const comment = document.getElementById('user-comment').value;
+      // Perform action to submit user comment (e.g., send comment to server)
+      console.log('User comment:', comment);
+    }
+
+    function shareOnFacebook(movieTitle) {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent(`Check out this review of "${movieTitle}" on Movie Reviews!`);
+      const shareUrl = `https://www.facebook.com/sharer.php?u=${url}&quote=${text}`;
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+
+    function shareOnTwitter(movieTitle) {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent(`Check out this review of "${movieTitle}" on Movie Reviews!`);
+      const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+  </script>
+</body>
+</html>
